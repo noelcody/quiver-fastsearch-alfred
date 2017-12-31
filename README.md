@@ -1,5 +1,5 @@
 # quiver-fastsearch-alfred
-An Alfred workflow that searches Quiver notes by title. Searches run in about 150ms.
+An Alfred workflow that searches Quiver notes by title. Searches run in < 100ms on a collection of 500 notes.
 
 Setup: Set your Quiver directory as `path` in the workflow's variables (the *`[x]`* at the top-right of the workflow).
 
