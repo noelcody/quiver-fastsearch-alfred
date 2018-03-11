@@ -1,4 +1,4 @@
-# quiver-fastsearch-alfred
+# quiver-fastsearch-alfred 🏹🎩
 An Alfred workflow that searches Quiver notes by title. Searches run in < 100ms on a collection of 500 notes.
 
 Download: On the [releases page](https://github.com/noelcody/quiver-fastsearch-alfred/releases).
