@@ -98,7 +98,8 @@ EOB</string>
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
-				<string>open `dirname {query}`</string>
+				<string>dir=`dirname "{query}"`
+open "${dir}"</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
 				<key>scriptfile</key>
