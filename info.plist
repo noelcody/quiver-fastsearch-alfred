@@ -58,7 +58,7 @@
 				<key>script</key>
 				<string>query="{query}"
 
-items=`find "$path" -name "*content.json" -type f -print0 | xargs -0 -n 50 -P 20 grep -i "\"title\": \".*\b$query.*\"" |\
+items=`find "$path" -name "*content.json" -type f -print0 | xargs -0 -n 50 -P 20 grep -i "\"title\": \".*$query.*\"" |\
 while read i
 do
 file=${i/:*/}
