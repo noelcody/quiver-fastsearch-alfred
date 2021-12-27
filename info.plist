@@ -6,11 +6,11 @@
 	<string></string>
 	<key>connections</key>
 	<dict>
-		<key>08950F04-0AF0-4C6C-903C-A9FDCBDB7A42</key>
+		<key>D8B1E770-2DA8-47D7-9C45-1227827F15F3</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>7A8B3C10-DD85-414B-92E5-579D96C0CE3C</string>
+				<string>53E13B20-26AC-4493-A741-3DDD6B92031C</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -21,11 +21,11 @@
 		</array>
 	</dict>
 	<key>createdby</key>
-	<string></string>
+	<string>Noel Cody</string>
 	<key>description</key>
 	<string></string>
 	<key>disabled</key>
-	<true/>
+	<false/>
 	<key>name</key>
 	<string>Quiver Title Search</string>
 	<key>objects</key>
@@ -37,37 +37,40 @@
 				<false/>
 				<key>alfredfiltersresultsmatchmode</key>
 				<integer>0</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<false/>
 				<key>argumenttrimmode</key>
 				<integer>0</integer>
 				<key>argumenttype</key>
-				<integer>1</integer>
+				<integer>0</integer>
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>keyword</key>
-				<string>q</string>
+				<string>e</string>
 				<key>queuedelaycustom</key>
 				<integer>3</integer>
 				<key>queuedelayimmediatelyinitially</key>
-				<false/>
+				<true/>
 				<key>queuedelaymode</key>
 				<integer>0</integer>
 				<key>queuemode</key>
-				<integer>1</integer>
+				<integer>2</integer>
 				<key>runningsubtext</key>
 				<string>...</string>
 				<key>script</key>
-				<string>query="{query}"
+				<string>QUERY="{query}"
+PATH=$PATH:/usr/local/bin
 
-items=`find "$path" -name "*content.json" -type f -print0 | xargs -0 -n 50 -P 20 grep -i "\"title\": \".*\b$query.*\"" |\
-while read i
-do
-file=${i/:*/}
-echo $i | awk -v file="$file" -F"\": \"" '{gsub(/\".*\,/,"",$2); printf "{\"type\": \"file\",\"title\": \""$2"\",\"arg\": \""file"\"},"}' &amp;
-done`
+ITEMS=`rg -i -m 1 -g 'meta.json' "^  \"title\" : \".*\b$QUERY.*\"" "$LIBRARY" |\
+while read -r RESULT; do
+  FILE=${RESULT/:*/}
+  TITLE=${RESULT/"$FILE":/}
+  echo "{\"type\": \"file\",$TITLE \"arg\": \"$FILE\"},"
+  done`
 
 cat &lt;&lt; EOB
 {"items": [
-  $items
+  $ITEMS
 ]}
 EOB</string>
 				<key>scriptargtype</key>
@@ -86,9 +89,9 @@ EOB</string>
 			<key>type</key>
 			<string>alfred.workflow.input.scriptfilter</string>
 			<key>uid</key>
-			<string>08950F04-0AF0-4C6C-903C-A9FDCBDB7A42</string>
+			<string>D8B1E770-2DA8-47D7-9C45-1227827F15F3</string>
 			<key>version</key>
-			<integer>2</integer>
+			<integer>3</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -99,7 +102,7 @@ EOB</string>
 				<integer>102</integer>
 				<key>script</key>
 				<string>dir=`dirname "{query}"`
-open "${dir}"</string>
+open "$dir"</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
 				<key>scriptfile</key>
@@ -110,37 +113,37 @@ open "${dir}"</string>
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
-			<string>7A8B3C10-DD85-414B-92E5-579D96C0CE3C</string>
+			<string>53E13B20-26AC-4493-A741-3DDD6B92031C</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
 	</array>
 	<key>readme</key>
-	<string></string>
+	<string>https://github.com/noelcody/quiver-fastsearch-alfred</string>
 	<key>uidata</key>
 	<dict>
-		<key>08950F04-0AF0-4C6C-903C-A9FDCBDB7A42</key>
+		<key>53E13B20-26AC-4493-A741-3DDD6B92031C</key>
 		<dict>
 			<key>xpos</key>
-			<integer>90</integer>
+			<integer>245</integer>
 			<key>ypos</key>
-			<integer>60</integer>
+			<integer>55</integer>
 		</dict>
-		<key>7A8B3C10-DD85-414B-92E5-579D96C0CE3C</key>
+		<key>D8B1E770-2DA8-47D7-9C45-1227827F15F3</key>
 		<dict>
 			<key>xpos</key>
-			<integer>270</integer>
+			<integer>65</integer>
 			<key>ypos</key>
-			<integer>60</integer>
+			<integer>55</integer>
 		</dict>
 	</dict>
 	<key>variables</key>
 	<dict>
-		<key>path</key>
-		<string>/full/path/from/root</string>
+		<key>LIBRARY</key>
+		<string>/Volumes/GoogleDrive/My Drive/quiver/library</string>
 	</dict>
 	<key>version</key>
-	<string></string>
+	<string>1.2</string>
 	<key>webaddress</key>
 	<string></string>
 </dict>
