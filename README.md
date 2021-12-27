@@ -1,12 +1,16 @@
-# quiver-fastsearch-alfred 🏹🎩
-An Alfred workflow that searches Quiver notes by title. Searches run in < 100ms on a collection of 500 notes.
+# quiver-fastsearch-alfred
+An Alfred workflow that searches Quiver notes by title. Searches run in ~100ms on a collection of 1000 notes.
 
-Download: On the [releases page](https://github.com/noelcody/quiver-fastsearch-alfred/releases).
+This workflow just wraps a bash script which uses `ripgrep` to search across note titles in Quiver's json files. **You will need to install ripgrep to use this workflow** (see below). In my testing ripgrep runs about 2x faster than using the standard `grep -R`.
 
-Setup: Set your Quiver directory as `path` in the workflow's variables (the *`[x]`* at the top-right of the workflow).
+### Download
+Download the workflow file on the [releases page](https://github.com/noelcody/quiver-fastsearch-alfred/releases).
 
-This workflow just wraps a bash script. I wrote this because:
-* Other Quiver search workflows I found out there are slow and support too many features
-* Built-in Quiver search doesn't rank relevance by title
+### Setup
+1. Install [ripgrep](https://github.com/BurntSushi/ripgrep): `brew install rg`
 
-I was able to speed things up by cutting back to title-only search and parallelizing some text processing.
+This install command uses homebrew. If you don't have homebrew installed, see the [official homebrew documentation](https://brew.sh/).
+
+The workflow expects rg to install to `/usr/local/bin/rg`. After running homebrew verify the install location with `which rg`.
+
+2. Set your Quiver library directory as the `LIBRARY` value in the workflow's variables (the *`[x]`* at the top-right of the workflow).
